@@ -53,7 +53,6 @@ app.listen(port);
 
 app.get("/", (req, res) => {
     Interaction.find().then( interactions => {
-
         res.render('interactions', {interactions})
     })
 });
@@ -61,12 +60,12 @@ app.get("/", (req, res) => {
 app.get("/logInteraction", (req, res) => {
 
     // if (req.host == )
-    console.log(req.connection.remoteAddress)
+    // console.log(req.connection.remoteAddress)
     // console.log(req.host)
 
     const urlBody = req.url.split('?=')
     const payload = urlBody[1].split('&')
-    console.log(urlBody, payload)
+    // console.log(urlBody, payload)
 
     const newInteraction = new Interaction();
 
