@@ -53,12 +53,14 @@ app.listen(port);
 
 app.get("/", (req, res) => {
     Interaction.find().then( interactions => {
+        console.log(req.host)
         res.render('interactions', {interactions})
     })
 });
 
 app.get("/logInteraction", (req, res) => {
     console.log(req.connection.remoteAddress)
+
     const urlBody = req.url.split('?=')
     const payload = urlBody[1].split('&')
     console.log(urlBody, payload)
