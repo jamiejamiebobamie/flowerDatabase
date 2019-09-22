@@ -61,8 +61,8 @@ app.get("/", (req, res) => {
 app.get("/logInteraction", (req, res) => {
 
     // if (req.host == )
-    // console.log(req.connection.remoteAddress)
-    console.log(req.host)
+    console.log(req.connection.remoteAddress)
+    // console.log(req.host)
 
     const urlBody = req.url.split('?=')
     const payload = urlBody[1].split('&')
