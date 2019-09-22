@@ -37,7 +37,7 @@ app.use(express.static('public'));
 // app.use(express.static('/'));
 
 // //heroku database.
-// mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/pinterest'), { useNewUrlParser: true });
+mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/flower-classification'), { useNewUrlParser: true });
 
 //views middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -46,10 +46,10 @@ app.set('view engine', 'handlebars');
 app.listen(port);
 
 // local database
-mongoose.connect(process.env.COMPOSE_URI, function (error) {
-    if (error) console.error(error);
-    else console.log('mongo connected');
-});
+// mongoose.connect(process.env.COMPOSE_URI, function (error) {
+//     if (error) console.error(error);
+//     else console.log('mongo connected');
+// });
 
 app.get("/", (req, res) => {
     Interaction.find().then( interactions => {
