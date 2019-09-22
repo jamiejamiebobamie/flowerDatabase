@@ -2,8 +2,14 @@
 <div class="interactions">
     {{#each interactions}}
         <ul class="interaction">
-            <li class="input">{{this.input}}</li>
+            Input:
+            <li class="input">{{this.petalLength}}</li>
+            <li class="input">{{this.petalWidth}}</li>
+            <li class="input">{{this.sepalLength}}</li>
+            <li class="input">{{this.sepalWidth}}</li>
+            Output:
             <li class="output">{{this.output}}</li>
+            Timestamp:
             <li class="time">{{this.time}}</li>
         </ul>
     {{/each}}

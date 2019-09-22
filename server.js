@@ -25,7 +25,7 @@ const Interaction = require('./models/logInteraction.js');
 const port = process.env.PORT || 13000;
 
 // Add after body parser initialization!
-app.use(expressValidator());
+// app.use(expressValidator());
 
 //must come below const app, but before routes
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,19 +52,25 @@ mongoose.connect(process.env.COMPOSE_URI, function (error) {
 });
 
 app.get("/", (req, res) => {
-    Interaction.find( ).then( interactions => {
-        res.render('interactions', interactions)
+    Interaction.find().then( interactions => {
+        res.render('interactions', {interactions})
     })
 });
 
-app.post("/logInteraction", (req, res) => {
+app.get("/logInteraction", (req, res) => {
     console.log(req.connection.remoteAddress)
-    console.log(req.body)
+    const urlBody = req.url.split('?=')
+    const payload = urlBody[1].split('&')
+    console.log(urlBody, payload)
 
     const newInteraction = new Interaction();
-    newInteraction.input = req.body.input
-    newInteraction.output = req.body.output
-    newInteraction.time = req.body.time
+
+    newInteraction.petalLength = payload[0]
+    newInteraction.petalWidth = payload[1]
+    newInteraction.sepalLength = payload[2]
+    newInteraction.sepalWidth = payload[3]
+    newInteraction.output = payload[4]
+    newInteraction.time = payload[5]
 
     newInteraction.save().then(()=>
         res.redirect('/')

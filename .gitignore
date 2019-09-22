@@ -84,3 +84,4 @@ typings/
 .dynamodb/
 
 node_modules
+.env
